@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cover Invitation — Demo</title>
+  <meta name="theme-color" content="#1B2218">
+
+  <!-- Fonts (Edwardian Script is self-hosted via cover.css; Great Vibes is its fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/cover.css">
+</head>
+<body style="margin:0; background:#FBF7F0;">
+
+  <!-- ============ LOADER ============ -->
+  <div class="cv-loader" id="cv-loader" aria-hidden="true">
+    <div class="cv-loader__monogram">A &amp; A</div>
+    <div class="cv-loader__tagline">Nikkah Invitation</div>
+    <div class="cv-loader__bar-wrap"><div class="cv-loader__bar"></div></div>
+  </div>
+
+  <!-- ============ COVER / GATE ============ -->
+  <div class="cv-gate" id="cv-gate" role="dialog" aria-label="Opening invitation">
+    <div class="cv-gate__floral cv-gate__floral--tl" aria-hidden="true"><img src="images/floral-corner.svg" alt=""></div>
+    <div class="cv-gate__floral cv-gate__floral--br" aria-hidden="true"><img src="images/floral-corner.svg" alt=""></div>
+
+    <div class="cv-gate__inner">
+      <p class="cv-gate__arabic" dir="rtl" lang="ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <p class="cv-gate__eyebrow">By the Grace of Allah</p>
+      <h1 class="cv-gate__names">Afshan <span class="cv-gate__amp">&amp;</span> Anjum</h1>
+      <p class="cv-gate__invite-text">Kindly request your company for the celebration of our Nikkah</p>
+      <p class="cv-gate__date">Saturday · August 15, 2026 · 3:30 PM</p>
+      <div class="cv-gate__venue">Green Nest Kumbalangi</div>
+      <button type="button" class="cv-btn cv-btn--gate cv-btn--ripple" id="cv-open-btn">
+        <span class="cv-btn__icon">✦</span>
+        Open Invitation
+      </button>
+    </div>
+
+    <div class="cv-gate__divider" aria-hidden="true">
+      <span></span><span class="cv-gate__divider-glyph">❋</span><span></span>
+    </div>
+  </div>
+
+  <!-- ============ YOUR PAGE CONTENT (revealed after the gate opens) ============ -->
+  <main style="min-height:100vh; display:grid; place-items:center; font-family:'Cormorant Garamond',serif; color:#5A4A3A;">
+    <p style="font-size:1.4rem; font-style:italic;">Invitation opened — your site content goes here.</p>
+  </main>
+
+  <script src="js/cover.js"></script>
+</body>
+</html>

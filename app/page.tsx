@@ -2,6 +2,8 @@
 import { useEffect, useRef, useState, type CSSProperties, type FormEvent } from 'react';
 import { Heart, MapPin } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogTrigger, DialogClose } from '@/components/ui/dialog';
+import Cover from '@/components/Cover';
+import MusicPlayer from '@/components/MusicPlayer';
 const asset = (name: string) => `/assets/${name}.png`;
 const labels = ['DAYS', 'HOURS', 'MINUTES', 'SECONDS'];
 const weddingTime = new Date('2026-10-25T17:00:00+05:30').getTime();
@@ -9,8 +11,8 @@ function remaining() {
   const seconds = Math.max(0, Math.floor((weddingTime - Date.now()) / 1000));
   return [Math.floor(seconds / 86400), Math.floor(seconds / 3600) % 24, Math.floor(seconds / 60) % 60, seconds % 60];
 }
-function Fade({ children, delay, className = '' }: { children: React.ReactNode; delay: number; className?: string }) {
-  return <div className={`fade-up ${className}`} style={{ animationDelay: `${delay}ms` }}>{children}</div>;
+function Fade({ children, delay, className = '', active = true }: { children: React.ReactNode; delay: number; className?: string; active?: boolean }) {
+  return <div className={`${active ? 'fade-up' : 'opacity-0'} ${className}`} style={active ? { animationDelay: `${delay}ms` } : undefined}>{children}</div>;
 }
 function Countdown() {
   const [time, setTime] = useState([0, 0, 0, 0]);
@@ -67,65 +69,116 @@ function Envelope() {
   </div></section>;
 }
 export default function Invitation() {
-  return <main className="paper-bg"><h1 className="sr-only">Fadhih & Hanna — Wedding Invitation</h1>
-    <div className="petals" aria-hidden="true">{Array.from({ length: 14 }, (_, i) => <span key={i} style={{ left: `${(i * 37 + 16) % 100}%`, width: `${9 + i % 9}px`, height: `${6 + i % 5}px`, animationDelay: `${(i * 1.7) % 12}s`, animationDuration: `${15 + i % 12}s` } as CSSProperties} />)}</div>
-    <div className="invitation">
-      <Fade delay={300} className="monogram"><img src={asset('logo-2')} alt="Fadhih &amp; Hanna monogram" /></Fade>
-      <Fade delay={600} className="parent-details groom-parents"><p>S/O K. ABDUL LATHEEF &amp; FOUSIYA LATHEEF</p></Fade>
-      <Fade delay={900} className="couple-names-block">
-        <h2 className="couple-name">Fadhih</h2>
-        <span className="couple-ampersand">&amp;</span>
-        <h2 className="couple-name">Hanna</h2>
-      </Fade>
-      <Fade delay={1500} className="portrait">
-        <div className="portrait-frame">
-          {/* Decorative rings SVG */}
-          <svg className="portrait-rings-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="gld" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#c8a458" />
-                <stop offset="45%" stopColor="#eacf7c" />
-                <stop offset="100%" stopColor="#a07832" />
-              </linearGradient>
-            </defs>
-            {/* Outer thin gold ring */}
-            <circle cx="50" cy="50" r="48.5" fill="none" stroke="url(#gld)" strokeWidth="0.85" />
-            {/* Inner thin gold ring */}
-            <circle cx="50" cy="50" r="40" fill="none" stroke="url(#gld)" strokeWidth="0.6" opacity="0.75" />
-          </svg>
-          {/* Calligraphy — multiply blend lets gold float over rings */}
-          <div className="calligraphy-img-wrap">
-            <img src="/assets/arabic-monogram.png" alt="Fadhih &amp; Hanna Arabic calligraphy monogram" />
-          </div>
-          {/* Stars on top */}
-          <svg className="portrait-stars-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="gld2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#c8a458" />
-                <stop offset="50%" stopColor="#eacf7c" />
-                <stop offset="100%" stopColor="#a07832" />
-              </linearGradient>
-            </defs>
-            {/* Top 4-pointed star */}
-            <path d="M50 -5.5 L51.5 1.5 L58.5 3 L51.5 4.5 L50 11.5 L48.5 4.5 L41.5 3 L48.5 1.5 Z" fill="url(#gld2)" />
-            {/* Bottom 4-pointed star */}
-            <path d="M50 88.5 L51.5 95.5 L58.5 97 L51.5 98.5 L50 105.5 L48.5 98.5 L41.5 97 L48.5 95.5 Z" fill="url(#gld2)" />
-          </svg>
+  const [opened, setOpened] = useState(false);
+
+  return (
+    <>
+      <Cover onOpen={() => setOpened(true)} />
+      <MusicPlayer playTrigger={opened} />
+      <main className="paper-bg">
+        <h1 className="sr-only">Fadhih & Hanna — Wedding Invitation</h1>
+        <div className="petals" aria-hidden="true">
+          {Array.from({ length: 14 }, (_, i) => (
+            <span
+              key={i}
+              style={
+                {
+                  left: `${(i * 37 + 16) % 100}%`,
+                  width: `${9 + (i % 9)}px`,
+                  height: `${6 + (i % 5)}px`,
+                  animationDelay: `${(i * 1.7) % 12}s`,
+                  animationDuration: `${15 + (i % 12)}s`,
+                } as CSSProperties
+              }
+            />
+          ))}
         </div>
-      </Fade>
-      <div className="lace-panel"><img className="lace-art" src={asset('lace3')} alt="" aria-hidden="true" /><div className="event-content">
-        <Fade delay={1800} className="event-date"><h3 className="event-date-text">OCTOBER 25, 2026</h3></Fade>
-        <Fade delay={2100} className="nikkah-details"><p className="event-copy">RECEPTION ON OCT 25, 2026 FROM <span className="time">5:00</span> PM TO <span className="time">9:00</span> PM,<br />FAYIZ MAHAL, KAMMILI, ATHOLI</p></Fade>
-        <Fade delay={2200} className="location"><a className="invitation-button" href="https://maps.app.goo.gl/VmupYHovYmJointc9" target="_blank" rel="noopener noreferrer"><MapPin size={16} strokeWidth={1.5} />RECEPTION LOCATION</a></Fade>
-        <Fade delay={2700} className="countdown-wrap"><Countdown /></Fade>
-      </div></div>
-      <Fade delay={3150} className="wishes-section">
-        {/* <Wishes /> */}
-        <p className="honour-text">We would be honoured by your presence and prayers as we begin this new chapter.</p>
-        <p>WE SEEK YOUR DUAS AND WARMLY<br />INVITE YOU TO CELEBRATE THIS<br />SPECIAL OCCASION WITH US.</p>
-      </Fade>
-      <Fade delay={3150} className="dua"><img src={asset('dua')} alt="Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fee khair" /></Fade>
-      <Envelope />
-    </div>
-  </main>;
+        <div className="invitation">
+          <Fade active={opened} delay={300} className="monogram">
+            <img src={asset('logo-2')} alt="Fadhih &amp; Hanna monogram" />
+          </Fade>
+          <Fade active={opened} delay={600} className="parent-details groom-parents">
+            <p>S/O K. ABDUL LATHEEF &amp; FOUSIYA LATHEEF</p>
+          </Fade>
+          <Fade active={opened} delay={900} className="couple-names-block">
+            <h2 className="couple-name">Fadhih</h2>
+            <span className="couple-ampersand">&amp;</span>
+            <h2 className="couple-name">Hanna</h2>
+          </Fade>
+          <Fade active={opened} delay={1500} className="portrait">
+            <div className="portrait-frame">
+              {/* Decorative rings SVG */}
+              <svg className="portrait-rings-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="gld" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#c8a458" />
+                    <stop offset="45%" stopColor="#eacf7c" />
+                    <stop offset="100%" stopColor="#a07832" />
+                  </linearGradient>
+                </defs>
+                {/* Outer thin gold ring */}
+                <circle cx="50" cy="50" r="48.5" fill="none" stroke="url(#gld)" strokeWidth="0.85" />
+                {/* Inner thin gold ring */}
+                <circle cx="50" cy="50" r="40" fill="none" stroke="url(#gld)" strokeWidth="0.6" opacity="0.75" />
+              </svg>
+              {/* Calligraphy — multiply blend lets gold float over rings */}
+              <div className="calligraphy-img-wrap">
+                <img src="/assets/arabic-monogram.png" alt="Fadhih &amp; Hanna Arabic calligraphy monogram" />
+              </div>
+              {/* Stars on top */}
+              <svg className="portrait-stars-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="gld2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#c8a458" />
+                    <stop offset="50%" stopColor="#eacf7c" />
+                    <stop offset="100%" stopColor="#a07832" />
+                  </linearGradient>
+                </defs>
+                {/* Top 4-pointed star */}
+                <path d="M50 -5.5 L51.5 1.5 L58.5 3 L51.5 4.5 L50 11.5 L48.5 4.5 L41.5 3 L48.5 1.5 Z" fill="url(#gld2)" />
+                {/* Bottom 4-pointed star */}
+                <path d="M50 88.5 L51.5 95.5 L58.5 97 L51.5 98.5 L50 105.5 L48.5 98.5 L41.5 97 L48.5 95.5 Z" fill="url(#gld2)" />
+              </svg>
+            </div>
+          </Fade>
+          <div className="lace-panel">
+            <img className="lace-art" src={asset('lace3')} alt="" aria-hidden="true" />
+            <div className="event-content">
+              <Fade active={opened} delay={1800} className="event-date">
+                <h3 className="event-date-text">OCTOBER 25, 2026</h3>
+              </Fade>
+              <Fade active={opened} delay={2100} className="nikkah-details">
+                <p className="event-copy">
+                  RECEPTION ON OCT 25, 2026 FROM <span className="time">5:00</span> PM TO <span className="time">9:00</span> PM,<br />
+                  FAYIZ MAHAL, KAMMILI, ATHOLI
+                </p>
+              </Fade>
+              <Fade active={opened} delay={2200} className="location">
+                <a className="invitation-button" href="https://maps.app.goo.gl/VmupYHovYmJointc9" target="_blank" rel="noopener noreferrer">
+                  <MapPin size={16} strokeWidth={1.5} />
+                  RECEPTION LOCATION
+                </a>
+              </Fade>
+              <Fade active={opened} delay={2700} className="countdown-wrap">
+                <Countdown />
+              </Fade>
+            </div>
+          </div>
+          <Fade active={opened} delay={3150} className="wishes-section">
+            {/* <Wishes /> */}
+            <p className="honour-text">We would be honoured by your presence and prayers as we begin this new chapter.</p>
+            <p>
+              WE SEEK YOUR DUAS AND WARMLY<br />
+              INVITE YOU TO CELEBRATE THIS<br />
+              SPECIAL OCCASION WITH US.
+            </p>
+          </Fade>
+          <Fade active={opened} delay={3150} className="dua">
+            <img src={asset('dua')} alt="Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fee khair" />
+          </Fade>
+          <Envelope />
+        </div>
+      </main>
+    </>
+  );
 }
