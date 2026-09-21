@@ -34,7 +34,16 @@ export const metadata: Metadata = {
     description: 'Wedding Reception · 25 October 2026 · Fayiz Mahal, Kammili, Atholi',
     url: 'https://fadhih-hanna.vercel.app',
     siteName: 'Fadhih & Hanna Wedding',
-    images: [{ url: 'https://fadhih-hanna.vercel.app/og', width: 1200, height: 630, alt: 'Fadhih & Hanna Wedding Invitation' }],
+    images: [
+      {
+        url: 'https://fadhih-hanna.vercel.app/og.jpg',
+        secureUrl: 'https://fadhih-hanna.vercel.app/og.jpg',
+        width: 1280,
+        height: 720,
+        type: 'image/jpeg',
+        alt: 'Fadhih & Hanna Wedding Invitation',
+      },
+    ],
     type: 'website',
     locale: 'en_US',
   },
@@ -42,7 +51,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Fadhih & Hanna · Wedding Invitation',
     description: 'Wedding Reception · 25 October 2026 · Fayiz Mahal, Kammili, Atholi',
-    images: ['https://fadhih-hanna.vercel.app/og'],
+    images: ['https://fadhih-hanna.vercel.app/og.jpg'],
   },
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
