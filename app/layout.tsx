@@ -39,8 +39,8 @@ export const metadata: Metadata = {
       {
         url: 'https://fadhih-hanna.vercel.app/og.jpg',
         secureUrl: 'https://fadhih-hanna.vercel.app/og.jpg',
-        width: 1280,
-        height: 720,
+        width: 1200,
+        height: 800,
         type: 'image/jpeg',
         alt: 'Fadhih & Hanna Wedding Invitation',
       },
