@@ -28,11 +28,11 @@ const edwardianScript = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL('https://fadhih-hanna.vercel.app'),
   title: 'Fadhih & Hanna · Wedding Invitation · 25 October 2026',
-  description: 'Join us as we celebrate the wedding reception of Fadhih & Hanna on October 25, 2026 at Fayiz Mahal, Kammili, Atholi.',
+  description: 'Join us as we celebrate the wedding reception of Fadhih & Hanna on October 25, 2026 at Fayiz Mahal, Atholi.',
   icons: { icon: '/assets/logo-2.png' },
   openGraph: {
     title: 'Fadhih & Hanna · Wedding Invitation',
-    description: 'Wedding Reception · 25 October 2026 · Fayiz Mahal, Kammili, Atholi',
+    description: 'Wedding Reception · 25 October 2026 · Fayiz Mahal, Atholi',
     url: 'https://fadhih-hanna.vercel.app',
     siteName: 'Fadhih & Hanna Wedding',
     images: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Fadhih & Hanna · Wedding Invitation',
-    description: 'Wedding Reception · 25 October 2026 · Fayiz Mahal, Kammili, Atholi',
+    description: 'Wedding Reception · 25 October 2026 · Fayiz Mahal, Atholi',
     images: ['https://fadhih-hanna.vercel.app/og.jpg'],
   },
 };

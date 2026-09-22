@@ -74,6 +74,7 @@ function OurStory() {
           step.
         </p>
       </Fade>
+      <p className="story-signature">Fadhih &amp; Hanna</p>
     </section>
   );
 }
