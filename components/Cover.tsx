@@ -117,12 +117,12 @@ export default function Cover({ onOpen }: CoverProps) {
           role="dialog"
           aria-label="Opening wedding invitation"
         >
-          <div className="cv-gate__floral cv-gate__floral--tl" aria-hidden="true">
+          {/* <div className="cv-gate__floral cv-gate__floral--tl" aria-hidden="true">
             <img src="/images/floral-corner.svg" alt="" />
-          </div>
-          <div className="cv-gate__floral cv-gate__floral--br" aria-hidden="true">
+          </div> */}
+          {/* <div className="cv-gate__floral cv-gate__floral--br" aria-hidden="true">
             <img src="/images/floral-corner.svg" alt="" />
-          </div>
+          </div> */}
 
           <div className="cv-gate__inner">
             <p className="cv-gate__arabic" dir="rtl" lang="ar">
@@ -147,11 +147,11 @@ export default function Cover({ onOpen }: CoverProps) {
             </button>
           </div>
 
-          <div className="cv-gate__divider" aria-hidden="true">
+          {/* <div className="cv-gate__divider" aria-hidden="true">
             <span />
             <span className="cv-gate__divider-glyph">❋</span>
             <span />
-          </div>
+          </div> */}
         </div>
       )}
     </>

@@ -54,6 +54,29 @@ function Wishes() {
     </DialogContent>
   </Dialog>;
 }
+function OurStory() {
+  return (
+    <section className="story-section" aria-label="Our story">
+      <Fade active delay={0} className="story-heading-block">
+        <h3 className="story-eyebrow">OUR STORY</h3>
+        <h4 className="story-title">A BEGINNING, BY HIS GRACE</h4>
+      </Fade>
+      <Fade active delay={150} className="story-copy">
+        <p>
+          Every story is written before it is lived. Ours began quietly, in
+          ordinary days that slowly turned into something we could not imagine
+          apart from one another.
+        </p>
+        <p>
+          With gratitude to Allah for bringing our families together, we now
+          begin the next chapter — one built on faith, patience and love — and
+          we would be honoured to have you beside us as we take this first
+          step.
+        </p>
+      </Fade>
+    </section>
+  );
+}
 function Envelope() {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
@@ -105,6 +128,9 @@ export default function Invitation() {
             <span className="couple-ampersand">&amp;</span>
             <h2 className="couple-name">Hanna</h2>
           </Fade>
+          <Fade active={opened} delay={1200} className="parent-details bride-parents">
+            <p>D/O LATE HASSAN NELLIYOT &amp; SUHARA</p>
+          </Fade>
           <Fade active={opened} delay={1500} className="portrait">
             <div className="portrait-frame">
               {/* Decorative rings SVG */}
@@ -117,9 +143,9 @@ export default function Invitation() {
                   </linearGradient>
                 </defs>
                 {/* Outer thin gold ring */}
-                <circle cx="50" cy="50" r="48.5" fill="none" stroke="url(#gld)" strokeWidth="0.85" />
+                {/* <circle cx="50" cy="50" r="48.5" fill="none" stroke="url(#gld)" strokeWidth="0.85" /> */}
                 {/* Inner thin gold ring */}
-                <circle cx="50" cy="50" r="40" fill="none" stroke="url(#gld)" strokeWidth="0.6" opacity="0.75" />
+                {/* <circle cx="50" cy="50" r="40" fill="none" stroke="url(#gld)" strokeWidth="0.6" opacity="0.75" /> */}
               </svg>
               {/* Calligraphy — multiply blend lets gold float over rings */}
               <div className="calligraphy-img-wrap">
@@ -127,13 +153,13 @@ export default function Invitation() {
               </div>
               {/* Stars on top */}
               <svg className="portrait-stars-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <defs>
+                {/* <defs>
                   <linearGradient id="gld2" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#c8a458" />
                     <stop offset="50%" stopColor="#eacf7c" />
                     <stop offset="100%" stopColor="#a07832" />
                   </linearGradient>
-                </defs>
+                </defs> */}
                 {/* Top 4-pointed star */}
                 <path d="M50 -5.5 L51.5 1.5 L58.5 3 L51.5 4.5 L50 11.5 L48.5 4.5 L41.5 3 L48.5 1.5 Z" fill="url(#gld2)" />
                 {/* Bottom 4-pointed star */}
@@ -176,6 +202,7 @@ export default function Invitation() {
           <Fade active={opened} delay={3150} className="dua">
             <img src={asset('dua')} alt="Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fee khair" />
           </Fade>
+          <OurStory />
           <Envelope />
         </div>
       </main>
